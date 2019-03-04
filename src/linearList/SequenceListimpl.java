@@ -88,6 +88,7 @@ public class SequenceListimpl implements ISequence{
         s.data = 0;
         s.next = null;
         s = f.next;
+        size--;
         return true;
     }
 
