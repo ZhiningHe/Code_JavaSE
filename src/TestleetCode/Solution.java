@@ -1,16 +1,8 @@
 package TestleetCode;
+import java.util.Arrays;
+import java.util.*;
+
 //
-///**
-
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-}
-
 //class Solution1 {
 //    public ListNode removeElements(ListNode head, int val) {
 //        ListNode dummyHead = new ListNode(-1);
@@ -116,32 +108,99 @@ class ListNode {
 //1>2>2>1
 //1>2>3>2>1
     class Solution {
-         public Boolean chkpalindrome(ListNode A) {
-            //快慢指针找中点
-             //把后半部分反过来
-             //比较前后部分的链表 都相等就是回文链表
-             //注意极端情况 null
-             return false;
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
     }
+
+    public static Boolean chkpalindrome(ListNode A) {
+        if(A == null){
+            return false;
+        }
+        ListNode tmp = A;
+        int size=0,i=0;
+        ListNode mid=A;
+        while (tmp.next != null){
+            size++;
+        }
+        while (i<=size/2){
+            mid = mid.next;
+        }
+        //把后半部分反过来
+        ListNode f = mid;
+        ListNode s = f.next;
+        ListNode dummyhead = null ;
+        dummyhead.next = mid;
+        if(s==null ||f==null){
+            return false;
+        }else {
+            while (s != null) {
+                f.next = s.next;
+                s.next = dummyhead.next;
+                dummyhead.next = s;
+                s = f.next;
+            }
+        }
+        //比较前后部分的链表 都相等就是回文链表
+        while (mid !=null&&tmp!=null){
+            if(mid.val != tmp.val){
+                return false;
+            }
+            mid = mid.next;
+            tmp = tmp.next;
+        }
+        //注意极端情况 null
+        return true;
+    }
+}
 
 
     //递归实现特定值的结点删除
-    private ListNode remove(ListNode Head, int val){
-             if(Head == null){
-                 return Head;
-             }
-             //从这里一直递归直到把链表拆分成单个结点
-             ListNode res = remove(Head.next,val);
-             //从函数栈顶开始判断结点是不是要删除的
-             if(Head.val == val){
-                 //如果是，就直接返回头节点后的链表，也就是res链表
-                 return res;
-             }else {
-                 //如果不是，就保存头节点，把Head保存并返回Head.next
-                 Head.next = res;
-                 return Head.next;
-             }
-             //三目运算
-        // Head.next = Head.val == val ?  remove(Head.next,val) : remove(res,val);
-    }
-}
+//    private ListNode remove(ListNode Head, int val){
+//             if(Head == null){
+//                 return Head;
+//             }
+//             //从这里一直递归直到把链表拆分成单个结点
+//             ListNode res = remove(Head.next,val);
+//             //从函数栈顶开始判断结点是不是要删除的
+//             if(Head.val == val){
+//                 //如果是，就直接返回头节点后的链表，也就是res链表
+//                 return res;
+//             }else {
+//                 //如果不是，就保存头节点，把Head保存并返回Head.next
+//                 Head.next = res;
+//                 return Head.next;
+//             }
+//             //三目运算
+//        // Head.next = Head.val == val ?  remove(Head.next,val) : remove(res,val);
+//    }
+//}
+
+//import java.util.*;
+//public class Solution {
+//    //寻找第一个重复的元素
+//    public static char findFirstRepeat(String A, int n) {
+//        char[] a=A.toCharArray();
+//        HashSet hs=new HashSet();
+//        for(int i=0; i<n;i++)
+//        {
+//            if (!hs.add(a[i]))
+//                //hashset不允许存在相同的元素
+//            {
+//                return a[i];
+//            }
+//        }
+//        return 0;
+//    }
+//
+//    public static void main(String[] args)
+//    {
+//        System.out.println(findFirstRepeat("qywyer23tdd",11));
+//    }
+//}
+
+
