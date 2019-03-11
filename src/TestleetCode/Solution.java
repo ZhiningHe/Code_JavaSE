@@ -104,59 +104,59 @@ import java.util.*;
 //        }
 //    }
 
-//回文链表
-//1>2>2>1
-//1>2>3>2>1
-    class Solution {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
-    public static Boolean chkpalindrome(ListNode A) {
-        if(A == null){
-            return false;
-        }
-        ListNode tmp = A;
-        int size=0,i=0;
-        ListNode mid=A;
-        while (tmp.next != null){
-            size++;
-        }
-        while (i<=size/2){
-            mid = mid.next;
-        }
-        //把后半部分反过来
-        ListNode f = mid;
-        ListNode s = f.next;
-        ListNode dummyhead = null ;
-        dummyhead.next = mid;
-        if(s==null ||f==null){
-            return false;
-        }else {
-            while (s != null) {
-                f.next = s.next;
-                s.next = dummyhead.next;
-                dummyhead.next = s;
-                s = f.next;
-            }
-        }
-        //比较前后部分的链表 都相等就是回文链表
-        while (mid !=null&&tmp!=null){
-            if(mid.val != tmp.val){
-                return false;
-            }
-            mid = mid.next;
-            tmp = tmp.next;
-        }
-        //注意极端情况 null
-        return true;
-    }
-}
+////回文链表
+////1>2>2>1
+////1>2>3>2>1
+//    class Solution {
+//    public class ListNode {
+//        int val;
+//        ListNode next;
+//
+//        ListNode(int x) {
+//            val = x;
+//        }
+//    }
+//
+//    public static Boolean chkpalindrome(ListNode A) {
+//        if(A == null){
+//            return false;
+//        }
+//        ListNode tmp = A;
+//        int size=0,i=0;
+//        ListNode mid=A;
+//        while (tmp.next != null){
+//            size++;
+//        }
+//        while (i<=size/2){
+//            mid = mid.next;
+//        }
+//        //把后半部分反过来
+//        ListNode f = mid;
+//        ListNode s = f.next;
+//        ListNode dummyhead = null ;
+//        dummyhead.next = mid;
+//        if(s==null ||f==null){
+//            return false;
+//        }else {
+//            while (s != null) {
+//                f.next = s.next;
+//                s.next = dummyhead.next;
+//                dummyhead.next = s;
+//                s = f.next;
+//            }
+//        }
+//        //比较前后部分的链表 都相等就是回文链表
+//        while (mid !=null&&tmp!=null){
+//            if(mid.val != tmp.val){
+//                return false;
+//            }
+//            mid = mid.next;
+//            tmp = tmp.next;
+//        }
+//        //注意极端情况 null
+//        return true;
+//    }
+//}
 
 
     //递归实现特定值的结点删除
@@ -204,3 +204,28 @@ import java.util.*;
 //}
 
 
+//删除重复元素 返回新长度
+class Solution {
+    public static int removeDuplicates(int[] nums) {
+        if(nums.length == 0||nums.length == 1){
+            return nums.length;
+        }
+        int i=0;
+        while (i<nums.length-1){
+            if(nums[i+1] == nums[i]){//相等
+                int j = i+1;
+                while (j<nums.length){
+                    nums[j-1] = nums[j];//往前推一位
+                }
+                nums[nums.length-1-i] = -1;
+            }else i++;//不相等
+            if(nums[i] == -1) break; //到末尾跳出
+        }
+        return i;
+    }
+
+    public static void main(String[] args) {
+        int len = Solution.removeDuplicates(new int[]{0,0,1,1,1,2,2,3,3,4});
+        System.out.println(len);
+    }
+}

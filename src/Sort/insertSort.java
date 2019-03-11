@@ -5,7 +5,7 @@ public class insertSort {
         if(data.length <=1){
             return;
         }
-        for(int i=1; i<data.length-1;i++){
+        for(int i=1; i<data.length;i++){
             //data[i]是要插入的待排序集合的元素,data[0]是已排序集合的元素
             int tmp = data[i];
             for(int j=i-1; j>=0; j--){
@@ -23,4 +23,33 @@ public class insertSort {
             }
         }
     }
+
+    public static void halfInsert(int[] data){
+        if(data.length <=1){
+            return;
+        }
+        for(int i=1; i<data.length;i++){
+            //data[i]是要插入的待排序集合的元素,data[0]是已排序集合的元素
+            int tmp = data[i];
+            int low = 0; int high = i-1;
+            //
+            while (low<=high){
+                //折半查找到插入位置
+                int mid = (low+high)/2;
+                if(tmp <= data[mid]){
+                    high = mid-1;
+                }if(tmp > data[mid]){
+                    low = mid +1;
+                }
+            }
+            int j=i-1;
+            //插入位置是high+1,high+1之后的元素往后移动
+            //把high+1到i-1之间的元素都往后移一位
+              for(;j>=high+1;j--){
+                    data[j+1] = data[j];
+              }//退出后j=high，插入
+                data[j+1] = tmp;
+            }
+    }
 }
+
