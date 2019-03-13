@@ -9,7 +9,8 @@ public class Test {
 //          insertSort.halfInsert(data);
  //       shellSort.shell(data);
   //      seleteSort.selete(data);
-        mergeSort.sort(data);
+       QuickSort.qiuckSort2(data);
+  //      mergeSort.sort(data);
          sortHelpper.print(data);
     }
 }
