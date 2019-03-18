@@ -74,6 +74,63 @@ public class QuickSort {
             return j;
         }
 
+
+
+        //三路快排【推荐】
+    //lt 小于v的最后一个元素，从前向后
+    //[l+1,lt]<v
+    //i  遍历的元素
+    //[lt+1,i)==v
+    //gt  大于v的第一个元素，从后向前
+    //[gt,r]>v
+    //l    lt   i   gt   r
+    public static void qiuckSort3(int[] array){
+        if(array.length <=1)return;
+        int start = 0;int end = array.length-1;
+        qiuck3(array,start,end);
+    }
+    private static void qiuck3(int[] array ,int start, int end){
+        if(start >end) return;
+        if(end - start <=15){
+            //如果数据量少就使用直接插入
+            insert(array,start,end);
+            return;
+        }
+
+        int random = (int)(Math.random()*(end-start+1)+start);
+        swap(array,random,start);
+        //找到一个随机key
+        int value = array[start];
+        int lt = start; int gt = end+1; int i = start+1;
+        for(;i<gt;i++){
+            if(array[i]<value){
+                //放到小于的区域
+                swap(array,lt+1,i);
+                lt++;i++;
+            }else if(array[i]>value){
+                //放到大于区域
+                swap(array,gt-1,i);
+                gt--;
+            }
+        }
+        swap(array,lt,start);
+        //直接跳过相等元素的比较
+        qiuck3(array,start,lt-1);
+        qiuck3(array,gt,end);
+    }
+    private static void insert(int[] array,int start,int end){
+        int i = start;
+        for(;i<end;i++){
+            int j = i-1; int value = array[i];
+            for(;j>=0;j--){
+                if(array[j]>value){
+                    array[j+1] = array[j];
+                }else break;
+            }
+            array[j+1] = value;
+        }
+    }
+
     private static void swap(int[] array, int i, int j){
         int tmp = array[i];
         array[i] = array[j];

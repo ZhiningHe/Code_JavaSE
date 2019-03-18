@@ -12,6 +12,11 @@ public class mergeSort {
         if(start >= end){
             return;
         }
+        //优化：因为归并对于小数据的数组效率不如直插快
+        if(end - start <=15) {
+            insert(data, start, end);
+            return;
+        }
         //计算中间值
         int mid = (start+end)/2;
         //左边数组继续拆分
@@ -48,4 +53,17 @@ public class mergeSort {
             data[start+i] = tmp[i];
         }
     }
+    private static void insert(int[] array,int start,int end){
+        int i = start;
+        for(;i<end;i++){
+            int j = i+1; int value = array[i];
+            for(;j>=0;j--){
+                if(array[j]>value){
+                    array[j+1] = array[j];
+                }else break;
+            }
+            array[j+1] = value;
+        }
+    }
+
 }

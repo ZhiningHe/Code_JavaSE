@@ -9,8 +9,11 @@ public class Test {
 //          insertSort.halfInsert(data);
  //       shellSort.shell(data);
   //      seleteSort.selete(data);
-       QuickSort.qiuckSort2(data);
+       QuickSort.qiuckSort3(data);
   //      mergeSort.sort(data);
+
+
+//        Pritics.insert(data);
          sortHelpper.print(data);
     }
 }

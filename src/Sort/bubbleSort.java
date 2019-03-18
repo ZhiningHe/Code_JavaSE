@@ -20,6 +20,7 @@ public class bubbleSort {
                     flag = true;
                 }
             }
+            //优化：设置flag，避免在已经有序的集合中浪费时间
             if(!flag){
                 break;//数据集已经有序，跳出
             }
