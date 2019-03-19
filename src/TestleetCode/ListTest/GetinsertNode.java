@@ -13,7 +13,8 @@ public class GetinsertNode {
     }
     public class Solution {
         public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-return null;
+
+            return null;
         }
     }
 }
