@@ -1,4 +1,4 @@
-package TestleetCode.ListTest;
+package ListTest;
 //翻转链表
 
 public class ResetList {

@@ -1,4 +1,4 @@
-package TestleetCode.ArrayTest;
+package ArrayTest;
 //删除重复元素 返回新长度
 public class Deleteagine {
 

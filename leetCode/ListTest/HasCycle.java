@@ -1,4 +1,4 @@
-package TestleetCode.ListTest;
+package ListTest;
 
 
 public class HasCycle {

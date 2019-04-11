@@ -1,4 +1,4 @@
-package TestleetCode.ListTest;
+package ListTest;
 //将两个有序链表合并
 
 public class MergetwoList {

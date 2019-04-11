@@ -1,4 +1,4 @@
-package TestleetCode.ListTest;
+package ListTest;
 //删除链表中指定元素
 public class DeleteValueofList {
     public class ListNode {

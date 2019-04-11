@@ -1,4 +1,4 @@
-package TestleetCode.ListTest;
+package ListTest;
 //判断是否是回文链表
 public class isPalindrome {
     public static class Node {

@@ -1,4 +1,4 @@
-package TestleetCode.ArrayTest;
+package ArrayTest;
 //寻找两个数组的中位数
 public class FindsortArrayMidnuber {
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {

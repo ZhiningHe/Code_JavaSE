@@ -1,4 +1,4 @@
-package TestleetCode.ListTest;
+package ListTest;
 //实现两个链表对应位置相加，大于10可以进一位
 public class ListSum {
     public class ListNode {
