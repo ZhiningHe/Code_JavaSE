@@ -1,12 +1,16 @@
 package JavaSE.ThreadTest;
 
+import java.util.Queue;
+import java.util.Stack;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.Lock;
+
 /**
  * 启动三个线程，名称是A，B，C；按顺序打印ABCABCABCABCABC
  */
 public class ABCABC {
     private int flag = 1;
     private int count =0;
-
     public synchronized void A(){
         while (flag != 1){
             try {

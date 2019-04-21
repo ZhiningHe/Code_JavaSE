@@ -11,7 +11,7 @@ import java.util.SimpleTimeZone;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        File file = new File("H:\\Test.text");
+        File file = new File("H:\\JavaSE.Test.text");
         if(file.exists()){
             System.out.println((double) file.length()/1024/1024);//M
 
