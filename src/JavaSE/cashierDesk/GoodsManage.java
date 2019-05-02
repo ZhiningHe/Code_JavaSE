@@ -1,8 +1,6 @@
 package JavaSE.cashierDesk;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 商品类
@@ -17,8 +15,6 @@ class Goods{
         this.price = price;
     }
 
-    public Goods() { }
-
 }
 
 
@@ -32,15 +28,22 @@ public class GoodsManage {
     Map<Integer,Goods> goodsMap = new HashMap<>();
 
     public GoodsManage() { }
-
     //增加商品
     public void add(int No,String name,int price){
         if(!find(No)){
+            System.out.println("正在加入……");
+            System.out.println("加入成功！");
             Goods goods = new Goods(name,price);
             if(name != null){
                 //把新创建的goods加入到map里
-                goodsMap.put(No,goods);
+                this.goodsMap.put(No,goods);
             }
+        }else {
+            System.out.println("                     ");
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println("此商品货号已被设置！请检查~");
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println("                     ");
         }
     }
 
@@ -49,7 +52,7 @@ public class GoodsManage {
         //查找有没有这个entry元素
         if(find(No)) {
             //有的话直接删除
-            goodsMap.remove(No);
+            this.goodsMap.remove(No);
         }
     }
 
@@ -62,23 +65,38 @@ public class GoodsManage {
         }
         //把新的属性添加到hashmap中
         add(No,name,price);
+        this.printGoods();
     }
 
     //查找商品
     public boolean find(int No){
         //查找有没有这个entry元素
-        if(!goodsMap.containsKey(No)){
+        if(!this.goodsMap.containsKey(No)){
             System.out.println("很抱歉！没有此商品~");
             return false;
         }
         return true;
     }
 
-    //返回这个产品的序号
+    //返回这个产品
     public Goods getGood(int No){
          if(find(No)) {
-            return goodsMap.get(No);
+            return this.goodsMap.get(No);
         }
         return null;
+    }
+
+    //打印仓库已有商品
+    public void printGoods(){
+        Set<Map.Entry<Integer,Goods>> entrySet = this.goodsMap.entrySet();
+        Iterator<Map.Entry<Integer,Goods>> iterator = entrySet.iterator();
+        System.out.println("----货号----名称----价格----");
+        while (iterator.hasNext()){
+            Map.Entry<Integer,Goods> entry = iterator.next();
+            System.out.println("|-----"+entry.getKey()+"-----"
+                    +entry.getValue().name+"------"
+                    +entry.getValue().price+"----|");
+        }
+        System.out.println("----------------------------");
     }
 }
