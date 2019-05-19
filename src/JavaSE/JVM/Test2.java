@@ -19,7 +19,7 @@ public class Test2 {
         try{
             sof.stackOverFlow();
         }catch (Throwable e){
-            System.out.println("stack Over Flow");
+            System.out.println("Stack Over Flow");
             e.printStackTrace();
         }
     }
