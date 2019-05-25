@@ -1,5 +1,7 @@
 package JavaSE;
 
+import java.util.HashMap;
+
 /**
  * 对象回收自救
  */
@@ -16,6 +18,7 @@ public class Test{
         System.out.println("execute");
         //test与当前对象建立联系
         test = this;
+        HashMap
     }
 
 
