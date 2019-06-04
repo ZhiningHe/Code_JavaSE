@@ -25,7 +25,7 @@ public class cricleQueue<E> implements Queue<E> {
         if(size == max){
             return;
         }
-        data[tail%max] = (int) e;
+    //   data[tail%max] = (int) e;
         tail++;
         size++;
     }

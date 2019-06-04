@@ -4,14 +4,15 @@ public interface BinTree<E> {
     void add(E e);
     boolean contain(E e);
 
-    //三种遍历
+   // 三种遍历
     void preOrder();
     void inOrder();
     void postOrder();
+    void levelOrder();
 
 
     E getMin();
-    E getMax();
+    E getMax() throws Exception;
     E rmMin();
     E rmMax();
 
@@ -19,3 +20,6 @@ public interface BinTree<E> {
     boolean remove(E e);
     int size();
 }
+
+
+
