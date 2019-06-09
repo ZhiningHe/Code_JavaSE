@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
 
-    private class Node{
+    private class Node {
         E data;
         Node left;
         Node right;
@@ -20,6 +20,7 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
             this.data = e;
         }
     }
+
     //根节点
     private Node root;
     //个数
@@ -30,17 +31,17 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
 
     @Override
     public void add(E e) {
-         root = add(root,e);
+        root = add(root, e);
     }
 
     @Override
     public boolean contain(E e) {
-        if(root == null){
+        if (root == null) {
             return false;
-        }else if(root.data.compareTo(e) ==0){
+        } else if (root.data.compareTo(e) == 0) {
             return true;
         }
-        return contains(root,e);
+        return contains(root, e);
     }
 
 
@@ -71,11 +72,11 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
     public E getMin() {
         //中序遍历的第一个值就是最小值
         Object result = inOrder(root).get(0);
-        return (E)result;
+        return (E) result;
     }
 
-    private Node getMin(Node node){
-        if(node.left ==null){
+    private Node getMin(Node node) {
+        if (node.left == null) {
             return node;
         }
         return getMin(node.left);
@@ -85,29 +86,29 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
      * 一直向右走，直到底
      */
     @Override
-    public E getMax() throws Exception{
-        if(root ==null){
+    public E getMax() throws Exception {
+        if (root == null) {
             throw new Exception("root结点为空");
         }
         return getMax(root).data;
     }
 
-    private Node getMax(Node node){
-        if(node.right ==null){
+    private Node getMax(Node node) {
+        if (node.right == null) {
             return node;
         }
         return getMax(node.right);
     }
 
 
-
     @Override
     public E rmMin() {
         return (E) removemin(root);
     }
-    private Node removemin(Node node){
+
+    private Node removemin(Node node) {
         //找到了最小值
-        if(node.left ==null){
+        if (node.left == null) {
             //如果还有右边，就先保存起来
             Node noderight = node.right;
             //删除最小值
@@ -126,10 +127,11 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
 
     @Override
     public E rmMax() {
-        return (E)removemin(root);
+        return (E) removemin(root);
     }
-    private Node removemax(Node node){
-        if(node.right ==null){
+
+    private Node removemax(Node node) {
+        if (node.right == null) {
             Node leftnode = node.left;
             node.left = null;
             size--;
@@ -141,59 +143,53 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
 
     @Override
     public boolean remove(E e) {
-        root = remove(root,e);
+        root = remove(root, e);
         return true;
     }
-    private Node remove(Node node,E e){
-        if(node ==null){
+
+    private Node remove(Node node, E e) {
+        if (node == null) {
             return null;
         }
         //在左边删
-        if(e.compareTo(node.data)<0){
-            node.left = remove(node.left,e);
+        if (e.compareTo(node.data) < 0) {
+            node.left = remove(node.left, e);
+            return node;
         }
         //在右边删
-        if(e.compareTo(node.data)>0){
-            node.right = remove(node.right,e);
+        if (e.compareTo(node.data) > 0) {
+            node.right = remove(node.right, e);
+            return node;
         }
 
         //正好等于值，已经找到
-        else{
-            //只有左孩子
-            if(node.left!=null && node.right==null){
-                Node nodeleft = node.left;
-                size--;
-                node.left = null;
-                return nodeleft;
-            }
-            //只有右孩子
-            if(node.left== null && node.right != null){
+        else {
+            if (node.left == null) {
                 Node noderight = node.right;
                 size--;
                 //删除
                 node.right = null;
                 return noderight;
             }
-            //左右孩子都有
-            if(node.left != null &&node.right!= null){
-                //后继s（一定是叶子节点）
-                Node s = getMin(node.right);
-                //s.left = root.left
-                s.left = node.left ;
-                //把root的右数（除了s）连接到s.right上，
-                // 也就是删除root的右边的最小值，返回的是删除后的树，
-                //把树连给s.right
-                s.right = removemin(node.right);
-                //删除要删除的结点
+            if (node.right == null) {
+                Node nodeleft = node.left;
+                size--;
                 node.left = null;
-                node.right = null;
-                //返回s结点的树
-                return s;
+                return nodeleft;
             }
+            //左右孩子都有
+            //后继s（一定是叶子节点）
+            Node s = getMin(node.right);
+            s.right = removemin(node.right);
+            //s.left = root.left
+            s.left = node.left;
+            //删除要删除的结点
+            node.left = node.right = null;
+            //返回s结点的树
+            return s;
+            //到最后把改变的node传出
         }
-        //到最后把改变的node传出
-        return node;
-    }
+}
 
     @Override
     public int size() {
