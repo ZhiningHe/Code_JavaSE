@@ -28,12 +28,12 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
     private static ArrayList<Integer> prelist = new ArrayList<>();
     private static ArrayList<Integer> orderlist = new ArrayList<>();
 
-
+    //添加元素
     @Override
     public void add(E e) {
         root = add(root, e);
     }
-
+    //查找值
     @Override
     public boolean contain(E e) {
         if (root == null) {
@@ -44,37 +44,34 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         return contains(root, e);
     }
 
-
+    //前序遍历
     @Override
     public void preOrder() {
         preOrder(root);
     }
-
+    //中序遍历
     @Override
     public void inOrder() {
         inOrder(root);
     }
-
+    //后序遍历
     @Override
     public void postOrder() {
         postOrder(root);
     }
-
+    //层序遍历
     @Override
     public void levelOrder() {
         levelOrder(root);
     }
 
-    /**
-     * 一直向左走，直到底
-     */
+    //获取最小值（左）
     @Override
     public E getMin() {
         //中序遍历的第一个值就是最小值
         Object result = inOrder(root).get(0);
         return (E) result;
     }
-
     private Node getMin(Node node) {
         if (node.left == null) {
             return node;
@@ -82,9 +79,7 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         return getMin(node.left);
     }
 
-    /**
-     * 一直向右走，直到底
-     */
+    //获取最大值（右）
     @Override
     public E getMax() throws Exception {
         if (root == null) {
@@ -92,7 +87,6 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         }
         return getMax(root).data;
     }
-
     private Node getMax(Node node) {
         if (node.right == null) {
             return node;
@@ -100,12 +94,11 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         return getMax(node.right);
     }
 
-
+    //删除最小值
     @Override
     public E rmMin() {
         return (E) removemin(root);
     }
-
     private Node removemin(Node node) {
         //找到了最小值
         if (node.left == null) {
@@ -125,11 +118,11 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         return node;
     }
 
+    //删除最大值
     @Override
     public E rmMax() {
         return (E) removemin(root);
     }
-
     private Node removemax(Node node) {
         if (node.right == null) {
             Node leftnode = node.left;
@@ -141,12 +134,12 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         return node;
     }
 
+    //删除指定结点
     @Override
     public boolean remove(E e) {
         root = remove(root, e);
         return true;
     }
-
     private Node remove(Node node, E e) {
         if (node == null) {
             return null;
@@ -191,6 +184,7 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         }
 }
 
+    //返回树的个数
     @Override
     public int size() {
         return size;
@@ -215,7 +209,6 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         //返回插入后得结点
         return node;
     }
-
     //查找
     private boolean contains(Node node,E e){
         //终止条件
@@ -234,10 +227,7 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         }
         return false;
     }
-
-    /**
-     * 前序遍历
-     */
+    //前序遍历
     private ArrayList<Integer> preOrder(Node node) {
         //根左右
         if(node == null){
@@ -248,9 +238,7 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         preOrder(node.right);
         return prelist;
     }
-    /**
-     * 中序遍历
-     */
+    //中序遍历
     private ArrayList<Integer> inOrder(Node node) {
         if(node == null){
             return orderlist;
@@ -261,10 +249,7 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         return orderlist;
 
     }
-
-    /**
-     *后序遍历
-     */
+    //后序遍历
     private void postOrder(Node node) {
         if(node == null){
             return;
@@ -273,11 +258,7 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
         inOrder(node.right);
         System.out.println(node.data);
     }
-
-    /**
-     * 层序遍历
-     * @param root
-     */
+    //层序遍历
     private void levelOrder(Node root) {
         if(root ==null){
             return;
@@ -291,7 +272,5 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
             }
         }
     }
-
-
 }
 
