@@ -12,7 +12,7 @@ public class seleteSort {
                     min = j;
                 }
             }
-            //把最小的元素放在开头
+            //把最小的元素放在i的位置
             int tmp = data[i];
             data[i] = data[min];
             data [min] = tmp;

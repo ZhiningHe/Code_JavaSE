@@ -3,6 +3,7 @@ package Sort;
 public class QuickSort {
     public static int[] qiuckSort(int[] array){
         if(array.length <=1) return array;
+        //闭区间
         qiuck(array,0,array.length-1);
         return array;
     }
@@ -106,7 +107,7 @@ public class QuickSort {
             if(array[i]<value){
                 //放到小于的区域
                 swap(array,lt+1,i);
-                lt++;i++;
+                lt++;
             }else if(array[i]>value){
                 //放到大于区域
                 swap(array,gt-1,i);
