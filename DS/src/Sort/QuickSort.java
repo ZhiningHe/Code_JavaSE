@@ -1,6 +1,9 @@
 package Sort;
 
 public class QuickSort {
+
+
+
     public static int[] qiuckSort(int[] array){
         if(array.length <=1) return array;
         //闭区间
@@ -65,7 +68,8 @@ public class QuickSort {
         while (true){
                 //相当于把等于key的值均分到两边
                 while (i<=end && array [i] <value ) i++;
-                while (j>=start+1 &&array [j] >value ) j--;
+                while (j>=start+1 && array [j] >value ) j--;
+                //最后一次j--到start位置
                 //交换后两个指针都移动一步
             if(i>j) break;
             swap(array,i,j);
@@ -76,8 +80,7 @@ public class QuickSort {
         }
 
 
-
-        //三路快排【推荐】
+    //三路快排【推荐】
     //lt 小于v的最后一个元素，从前向后
     //[l+1,lt]<v
     //i  遍历的元素
@@ -136,5 +139,15 @@ public class QuickSort {
         int tmp = array[i];
         array[i] = array[j];
         array[j] = tmp;
+    }
+
+
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{2,4,3,6,56,45,54};
+        QuickSort.qiuckSort2(arr);
+        for (int i=0; i<arr.length; i++){
+            System.out.print(arr[i]+"、");
+        }
     }
 }

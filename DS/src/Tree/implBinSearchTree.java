@@ -1,8 +1,7 @@
 package Tree;
 
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 二分搜索树的实现
@@ -28,6 +27,8 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
     private static ArrayList<Integer> prelist = new ArrayList<>();
     private static ArrayList<Integer> orderlist = new ArrayList<>();
 
+
+
     //添加元素
     @Override
     public void add(E e) {
@@ -48,11 +49,19 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
     @Override
     public void preOrder() {
         preOrder(root);
+        for (Integer i:prelist
+             ) {
+            System.out.print(i+"、");
+        }
     }
     //中序遍历
     @Override
     public void inOrder() {
         inOrder(root);
+        for (Integer i:orderlist
+                ) {
+            System.out.print(i+"、");
+        }
     }
     //后序遍历
     @Override
@@ -200,10 +209,10 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
             size++;
             return newnode;
         }
-        if(e.compareTo(node.data)<0 ){
+        if(e.compareTo(node.data)<=0 ){
             node.left = add(node.left,e);
         }
-        if(e.compareTo(node.data)>0 ){
+        if(e.compareTo(node.data)>=0 ){
             node.right = add(node.right,e);
         }
         //返回插入后得结点
@@ -260,16 +269,20 @@ public class implBinSearchTree<E extends Comparable<E>> implements BinTree<E> {
     }
     //层序遍历
     private void levelOrder(Node root) {
-        if(root ==null){
-            return;
-        }
-        while (true){
-            System.out.println(root.data);
-            if(root.left!=null){
-                levelOrder(root.left);
-            }else if(root.right !=null){
-                levelOrder(root.right);
-            }
+        if (root ==null) return ;
+        Queue<Node> level = new LinkedList<>();
+        //根节点入队
+        level.add(root);
+        while (!level.isEmpty()){
+            //先保存这个Node
+            Node tmp = level.poll();
+            //输出队头元素
+            System.out.print(tmp.data+"、");
+            //再添加子节点，按左右顺序添加
+            if (tmp.left!=null)
+            level.add(tmp.left);
+            if (tmp.right!=null)
+            level.add(tmp.right);
         }
     }
 }

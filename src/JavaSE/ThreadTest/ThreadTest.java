@@ -48,8 +48,8 @@ public class ThreadTest {
         Thread thread2 = new Thread(myThread,"B");
         thread1.start();
         thread2.start();
-//        Callable<String> callable = new MyThread();
-//        FutureTask<String> futureTask = new FutureTask<>(callable);
+//        Callable<StringTest> callable = new MyThread();
+//        FutureTask<StringTest> futureTask = new FutureTask<>(callable);
 //        Thread thread = new Thread(futureTask);
 //        thread.start();
 //        System.out.println(futureTask.get());

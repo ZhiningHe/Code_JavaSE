@@ -7,7 +7,6 @@ public class SequenceArrayimpl implements ISequence {
     private Object [] array = new Object[staticlen];
     private int realen;
 
-//ok
     @Override
     public void add(Object data) {
         if(realen + 1 <= staticlen){
@@ -29,7 +28,7 @@ public class SequenceArrayimpl implements ISequence {
         }
         return false;
     }
-//ok
+
     @Override
     public Object get(int index) {
         if(index <= 0 || index >= realen) {
@@ -37,7 +36,7 @@ public class SequenceArrayimpl implements ISequence {
         }
         return array[index];
     }
-//ok
+
     @Override
     public Object contains(Object data) {
         for (int i=0; i<realen; i++)
@@ -46,7 +45,7 @@ public class SequenceArrayimpl implements ISequence {
             }
         return -1;
     }
-//ok
+
     @Override
     public Object set(int index, Object newData) {
         if(get(index) != null) {
@@ -56,13 +55,13 @@ public class SequenceArrayimpl implements ISequence {
         }
         return null;
     }
-//ok
+
     @Override
     public int size() {
         return realen;
     }
 
-//ok
+
     @Override
     public void clear() {
         for(int i=0; i<realen; i++){
@@ -75,10 +74,10 @@ public class SequenceArrayimpl implements ISequence {
         return array;
     }
 
-    //ok
     //扩容
     private Object[] expandrange(Object[] array){
         staticlen =staticlen * 2;
+        //扩容，（原数组，新长度）
         return Arrays.copyOf(array,staticlen);
     }
 }

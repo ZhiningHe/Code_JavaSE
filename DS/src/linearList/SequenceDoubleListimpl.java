@@ -1,7 +1,7 @@
 package linearList;
 
 public class SequenceDoubleListimpl implements ISequence {
-    //构造函数
+    //内部类：Node结构
     private class Node{
         public Node(Object data) {
             this.data = data;
@@ -20,8 +20,8 @@ public class SequenceDoubleListimpl implements ISequence {
     }
 
     private int size = 0;
-    private Node Head;
-    private Node Last;
+    private Node Head = null;
+    private Node Last = null;
 
 
 
@@ -42,12 +42,12 @@ public class SequenceDoubleListimpl implements ISequence {
     public boolean remove(int index) {
         checkIndex(index);
         Node toRemove = Search(index);
-        if(toRemove.prev == null){//要删除的结点是头节点之后的
+        if(toRemove.prev == null){//要删除的结点是头节点
             Head = toRemove.next;
         }else{
             toRemove.prev.next =toRemove.next;
         }
-        if(toRemove.next == null){//要删除的结点是尾节点之前的
+        if(toRemove.next == null){//要删除的结点是尾节点
             Last = toRemove.prev;
         }else{
             toRemove.next.prev = toRemove.prev;

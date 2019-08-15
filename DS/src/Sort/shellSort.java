@@ -2,14 +2,12 @@ package Sort;
 
 public class shellSort {
     public static void shell(int[] data){
-        if(data.length <1){
+        if(data.length <=1){
             return;
         }
         int step = data.length/2;
         //跳出的条件
         while (step>=1) {
-            //小数组中要插入的元素
-
             //相当于直插排序
             for(int i =step; i<data.length; i++){
                 int value = data[i];

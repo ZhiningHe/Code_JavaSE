@@ -19,29 +19,25 @@ public class SequenceListimpl implements ISequence{
 
 
     //虚拟头节点
-    private Node dummyHead;
+    private Node dummyHead = new Node();
     //私有头节点
-    private Node head;
+    private Node head = dummyHead.next;
     //私有长度
-    private int size;
-
-
+    private int size = 0;
     @Override
     public void add(Object data) {
         //创建节点
         insrt(data,size);
     }
-
-
     //头插法
     public void headInsert(Object data,int index){
         Node newdata = new Node(data);
         //拼接结点
         newdata.next = head;
+        //head往前移
         head = newdata;
         // head = new Node (data,head);
     }
-
    //插入到任意位置
     public boolean insrt(Object data,int index) {
         //判断index是否合法
@@ -50,7 +46,7 @@ public class SequenceListimpl implements ISequence{
     }
         //若为0 则调用add
     if(index==0){
-        add(data);
+        head = new Node(data);
         size++;
     }
     else {
@@ -68,15 +64,12 @@ public class SequenceListimpl implements ISequence{
     }
         return true;
     }
-
-
     @Override
     public boolean remove(int index) {
-        Node f = new Node();
-        Node s = new Node();
-        Node dummyhead = new Node();
-        dummyhead = head;
-        f = dummyhead;
+        Node f;
+        Node s;
+        dummyHead.next = head;
+        f = dummyHead;
         s = f.next;
         for(int i=0; i<index; i++){
             //找到删除的位置
@@ -87,11 +80,12 @@ public class SequenceListimpl implements ISequence{
         f.next = s.next;
         s.data = 0;
         s.next = null;
-        s = f.next;
         size--;
+        if (index ==0){
+            head = dummyHead.next;
+        }
         return true;
     }
-
     @Override
     public Object get(int index) {
         check(index);Node n = new Node();
@@ -101,7 +95,6 @@ public class SequenceListimpl implements ISequence{
         }
         return n.data;
     }
-
     @Override
     public Object contains(Object data) {
         Node n = new Node();
@@ -112,19 +105,16 @@ public class SequenceListimpl implements ISequence{
         }
         return false;
     }
-
     @Override
     public Object set(int index, Object newData) {
         check(index);
         insrt(newData,index);
         return newData;
     }
-
     @Override
     public int size() {
         return size;
     }
-
     @Override
     public void clear() {
         Node n = new Node();
@@ -139,10 +129,9 @@ public class SequenceListimpl implements ISequence{
         }
         size = 0;
     }
-
     public Object[] toArray() {
         Node n = new Node();
-        n.next = head;
+        n= head;
         Object []array = new Object[size];
         for(int i=0; i<size; i++){
             array[i] = n.data;
@@ -150,7 +139,6 @@ public class SequenceListimpl implements ISequence{
         }
         return array;
     }
-
     //遍历链表
     public void viewAllList(){
         Node n = new Node();
@@ -158,7 +146,6 @@ public class SequenceListimpl implements ISequence{
             System.out.print(n.data+"、");
         }
     }
-
     //判断index是否合法
     private boolean check(int index){
         if(index >=0 && index <size){
