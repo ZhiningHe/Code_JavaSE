@@ -4,15 +4,16 @@ public class isPalindrome {
     public static class Node {
         int val;
         Node next;
-
         Node(int val) {
             this.val = val;
         }
     }
+
     public static boolean isPalindrome(Node head) {
         if(head == null || head.next == null) {
             return true;
         }
+        //快慢指针指向中点
         Node low,fast;
         low = fast = head;
         while(fast != null && low!=null && fast.next != null) {
