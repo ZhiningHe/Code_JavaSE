@@ -4,17 +4,17 @@ import java.util.Iterator;
 
 public class buble {
     public static void bublesort(int[] array){
-        boolean flag =true;
-        for (int i=0;i<array.length-1;i++){
-            for (int j = i+1; j<array.length; j++){
+        for(int i = 0; i<array.length-1; i++){
+            boolean flag = true;
+            for (int j =i+1; j<array.length; j++){
                 if (array[i]>array[j]){
-                    flag = false;
                     int tmp = array[i];
                     array[i] = array[j];
                     array[j] = tmp;
+                    flag = false;
                 }
             }
-            if (flag) break;
+            if (false) break;
         }
     }
 

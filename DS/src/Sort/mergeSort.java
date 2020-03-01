@@ -8,7 +8,7 @@ public class mergeSort {
         divide(data,0,data.length-1);
     }
     private static void divide(int[] data,int start,int end){  //拆分
-        //结束条件：拆分后的数组只剩两个元素
+        //结束条件：拆分后的数组只剩1个元素
         if(start >= end){
             return;
         }
@@ -48,6 +48,7 @@ public class mergeSort {
         while (left <= right){
             tmp[k++] = data[left++];
         }
+
         //将tmp中排序合并后的元素存回给data
         for (i =0; i<=end-start; i++){
             data[start+i] = tmp[i];

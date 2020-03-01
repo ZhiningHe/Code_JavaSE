@@ -51,7 +51,7 @@ public class QuickSort {
         return array;
     }
     private static void qiuck2(int[] array ,int start, int end){
-        if(start >end) return;
+        if(start >=end) return;
         int key = selectionKey2(array,start,end);
         qiuck2(array,start,key-1);
         qiuck2(array,key+1,end);
